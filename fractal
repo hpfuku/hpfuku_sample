@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int pat[2][3] = {
+
+   {1, 1, 1},
+   {1, 0, 1}
+};
+int p_rn = sizeof pat / sizeof pat[0];
+int p_cn = sizeof pat[0]  / sizeof pat[0][0];
+
+void print_frac(int);
+int exists_at(int, int, int);
+
+int main(){
+
+print_frac(3);
+
+}
+
+void print_frac(int d){
+ int i, j, rn, cn;
+
+rn = cn = 1;
+for(i=0; i < d; i++){
+   rn *= p_rn;
+   cn *= p_cn;
+}
+
+for(i=0; i < rn; i++){
+   for(j=0; j < cn; j++){
+       putchar(exists_at(i, j, d) ? '*' : ' ');
+      }
+      putchar('\n');
+    }
+ }
+
+int exists_at(int i, int j, int d){
+     if(d == 0){
+          return 1;
+     } else if(exists_at(i / p_rn, j / p_cn, d-1) == 0){
+          return 0;
+     } else {
+          return pat[i % p_rn][j % p_cn];
+     }
+}
+
